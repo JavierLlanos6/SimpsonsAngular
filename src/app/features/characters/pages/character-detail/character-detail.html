@@ -1,18 +1,25 @@
-<div *ngIf="loading">
-    <p>Cargando detalle...</p>
-</div>
+<div class="detail-container">
 
-<div *ngIf="!loading && character">
-    <h1>{{ character.name }}</h1>
+    <div *ngIf="loading" class="loading">
+        Cargando detalle...
+    </div>
 
-    <p><strong>Edad:</strong> {{ character.age }}</p>
-    <p><strong>Género:</strong> {{ character.gender }}</p>
-    <p><strong>Ocupación:</strong> {{ character.occupation }}</p>
-    <p><strong>Estado:</strong> {{ character.status }}</p>
+    <div *ngIf="!loading && character" class="detail-card">
 
-    <p><strong>Frase:</strong> {{ character.phrases?.[0] }}</p>
+        <img [src]="'https://thesimpsonsapi.com' + character.portrait_path" alt="{{ character.name }}" />
 
-    <br />
+        <h1>{{ character.name }}</h1>
 
-    <a routerLink="/">⬅ Volver</a>
+        <p><strong>Edad:</strong> {{ character.age }}</p>
+        <p><strong>Género:</strong> {{ character.gender }}</p>
+        <p><strong>Ocupación:</strong> {{ character.occupation }}</p>
+        <p><strong>Estado:</strong> {{ character.status }}</p>
+
+        <p class="phrase">
+            "{{ character.phrases?.[0] }}"
+        </p>
+
+        <a routerLink="/" class="back-btn">⬅ Volver</a>
+
+    </div>
 </div>

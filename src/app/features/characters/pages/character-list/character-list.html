@@ -1,13 +1,18 @@
-<div *ngIf="loading">
-    <p>Cargando...</p>
-</div>
+<div class="container">
+    <h1>Personajes de Los Simpsons</h1>
 
-<div *ngIf="!loading">
-    <ul>
-        <li *ngFor="let character of characters">
-            <a [routerLink]="[character.id]">
-                {{ character.name }}
-            </a>
-        </li>
-    </ul>
+    <div *ngIf="loading" class="loading">
+        Cargando...
+    </div>
+
+    <div class="grid" *ngIf="!loading">
+        <div class="card" *ngFor="let character of characters">
+
+            <img [src]="'https://thesimpsonsapi.com' + character.portrait_path" alt="{{ character.name }}" />
+
+            <h3>{{ character.name }}</h3>
+
+            <a [routerLink]="[character.id]">Ver detalle</a>
+        </div>
+    </div>
 </div>

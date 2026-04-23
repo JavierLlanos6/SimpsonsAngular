@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
   selector: 'app-character-list',
   imports: [CommonModule, RouterModule],
   templateUrl: './character-list.html',
+  styleUrls: ['./character-list.css'],
 })
 export class CharacterListComponent implements OnInit {
   characters: any[] = [];

@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-character-detail',
   imports: [CommonModule],
   templateUrl: './character-detail.html',
+  styleUrls: ['./character-detail.css'],
 })
 export class CharacterDetailComponent implements OnInit {
   character: any;
