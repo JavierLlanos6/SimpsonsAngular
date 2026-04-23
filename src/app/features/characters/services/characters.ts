@@ -6,12 +6,12 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class Characters {
-  private apiUrl = 'https://api.sampleapis.com/simpsons/characters'
+  private apiUrl = 'https://thesimpsonsapi.com/api/characters';
 
   constructor(private http: HttpClient) { }
 
-  getCharacters(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+  getCharacters(): Observable<any> {
+    return this.http.get<any>(this.apiUrl);
   }
 
   getCharacterById(id: number): Observable<any> {

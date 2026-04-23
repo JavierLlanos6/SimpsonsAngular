@@ -1,1 +1,16 @@
-<p>character-list works!</p>
+@if (loading) {
+<p>Cargando personajes...</p>
+}
+
+@if (error) {
+<p>Error cargando personajes ❌</p>
+}
+
+@if (!loading && !error) {
+<div *ngFor="let character of characters">
+    <a [routerLink]="[character.id]">
+        <h3>{{ character.name }}</h3>
+        <img [src]="'https://thesimpsonsapi.com' + character.portrait_path" width="150" />
+    </a>
+</div>
+}
