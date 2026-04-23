@@ -1,27 +1,44 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Characters } from '../../services/characters';
+import { CharactersService } from '../../services/characters';
 import { CommonModule } from '@angular/common';
 
 @Component({
+  standalone: true,
   selector: 'app-character-detail',
-  standalone: true, // 🔥 CLAVE
-  imports: [CommonModule], // 🔥 CLAVE
+  imports: [CommonModule],
   templateUrl: './character-detail.html',
 })
 export class CharacterDetailComponent implements OnInit {
   character: any;
+  loading = true;
 
   constructor(
     private route: ActivatedRoute,
-    private charactersService: Characters
+    private service: CharactersService,
+    private cdr: ChangeDetectorRef // lo mismo que el list
   ) { }
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
 
-    this.charactersService.getCharacterById(id).subscribe((data) => {
-      this.character = data;
+    this.loading = true;
+
+    this.service.getCharacterById(id).subscribe({
+      next: (data) => {
+        console.log('DETAIL:', data);
+
+        this.character = data;
+        this.loading = false;
+
+        this.cdr.detectChanges(); // no borrar explicado en list
+      },
+      error: (err) => {
+        console.log('ERROR:', err);
+        this.loading = false;
+
+        this.cdr.detectChanges();
+      }
     });
   }
 }

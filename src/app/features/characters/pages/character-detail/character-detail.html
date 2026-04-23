@@ -1,5 +1,18 @@
-<div *ngIf="character">
+<div *ngIf="loading">
+    <p>Cargando detalle...</p>
+</div>
+
+<div *ngIf="!loading && character">
     <h1>{{ character.name }}</h1>
 
-    <p>{{ character.description }}</p>
+    <p><strong>Edad:</strong> {{ character.age }}</p>
+    <p><strong>Género:</strong> {{ character.gender }}</p>
+    <p><strong>Ocupación:</strong> {{ character.occupation }}</p>
+    <p><strong>Estado:</strong> {{ character.status }}</p>
+
+    <p><strong>Frase:</strong> {{ character.phrases?.[0] }}</p>
+
+    <br />
+
+    <a routerLink="/">⬅ Volver</a>
 </div>

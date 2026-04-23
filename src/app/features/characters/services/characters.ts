@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class Characters {
+export class CharactersService {
   private apiUrl = 'https://thesimpsonsapi.com/api/characters';
 
   constructor(private http: HttpClient) { }
@@ -15,6 +15,6 @@ export class Characters {
   }
 
   getCharacterById(id: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/${id}`)
+    return this.http.get<any>(`${this.apiUrl}/${id}`);
   }
 }
