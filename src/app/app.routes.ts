@@ -21,10 +21,7 @@ export const routes: Routes = [
             import('./features/characters/pages/character-detail/character-detail')
                 .then(m => m.CharacterDetailComponent),
     },**/
-    {
-        path:':id',
-            component: CharacterDetailComponent
-    },
+    
     {
         path: 'operacion',
         component: Operacion
@@ -33,6 +30,10 @@ export const routes: Routes = [
     {
         path: 'hero',
         component: HeroClass
+    },
+    {
+        path:':id',
+            component: CharacterDetailComponent
     },
     {
         path: '**',

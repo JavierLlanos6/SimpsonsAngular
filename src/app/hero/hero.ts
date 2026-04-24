@@ -1,6 +1,9 @@
+import { CommonModule } from "@angular/common";
 import { Component, computed, signal } from "@angular/core";
 
 @Component({
+    standalone: true,
+    imports: [CommonModule],
     templateUrl: './hero.html',
 })
 
