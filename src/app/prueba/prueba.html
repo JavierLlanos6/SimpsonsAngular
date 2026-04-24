@@ -1,0 +1,32 @@
+<h1>CRUD Productos</h1>
+
+<button (click)="createFakeProduct()">
+    Crear producto
+</button>
+
+<div *ngIf="loading">
+    Cargando productos...
+</div>
+
+<div *ngIf="!loading">
+
+    <div *ngFor="let product of products" style="border:1px solid #ccc; padding:10px; margin:10px">
+
+        <h3>{{ product.title }}</h3>
+        <p>{{ product.price }} $</p>
+
+        <button [routerLink]="['/crud', product.id]">
+            Ver
+        </button>
+
+        <button (click)="editProduct(product)">
+            Editar
+        </button>
+
+        <button (click)="deleteProduct(product.id)">
+            Eliminar
+        </button>
+
+    </div>
+
+</div>

@@ -1,0 +1,15 @@
+<div *ngIf="loading">
+    Cargando detalle...
+</div>
+
+<div *ngIf="!loading && product">
+    <h1>{{ product.title }}</h1>
+    <p>{{ product.description }}</p>
+    <p>{{ product.price }} $</p>
+
+    <img [src]="product.image" width="200" />
+
+    <br><br>
+
+    <a routerLink="/crud">⬅ Volver</a>
+</div>
