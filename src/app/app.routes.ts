@@ -19,6 +19,10 @@ export const routes: Routes = [
         component: HeroClass
     },
     {
+        path: '**',
+        redirectTo: ''
+    },
+    {
         path: ':id',
         loadComponent: () =>
             import('./features/characters/pages/character-detail/character-detail')
