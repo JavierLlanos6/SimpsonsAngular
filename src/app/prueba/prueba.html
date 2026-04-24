@@ -3,6 +3,47 @@
 <button (click)="createFakeProduct()">
     Crear producto
 </button>
+<br>
+
+<button (click)="toggleForm()">
+  Crear producto local
+</button>
+
+<div *ngIf="showForm" style="margin:20px; padding:15px; border:1px solid #aaa;">
+
+    <h2>Nuevo producto</h2>
+
+    <div>
+        <label>Título:</label>
+        <input [(ngModel)]="newProduct.title" />
+    </div>
+
+    <div>
+        <label>Precio:</label>
+        <input type="number" [(ngModel)]="newProduct.price" />
+    </div>
+
+    <div>
+        <label>Descripción:</label>
+        <input [(ngModel)]="newProduct.description" />
+    </div>
+
+    <div>
+        <label>Categoría:</label>
+        <input [(ngModel)]="newProduct.category" />
+    </div>
+
+    <br />
+
+    <button (click)="saveProduct()">
+        Guardar producto
+    </button>
+
+    <button (click)="toggleForm()">
+        Cancelar
+    </button>
+
+</div>
 
 <div *ngIf="loading">
     Cargando productos...
