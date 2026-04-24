@@ -27,7 +27,7 @@ export class CharacterDetailComponent implements OnInit {
 
     this.service.getCharacterById(id).subscribe({
       next: (data) => {
-        console.log('DETAIL:', data);
+        console.log('DETAILllll:', data);
 
         this.character = data;
         this.loading = false;
