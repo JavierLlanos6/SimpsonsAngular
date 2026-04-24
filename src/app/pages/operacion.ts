@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, signal } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
 @Component({
@@ -10,9 +10,11 @@ import { CommonModule } from "@angular/common";
 
 export class Operacion{
     counter = 10
+    counterSignal = signal(10)
 
     increaseBy(value: number){
         this.counter += value
+        this.counterSignal.update((current) => current + value)
     }
 
     decreaseBy(value: number){
@@ -21,6 +23,7 @@ export class Operacion{
 
     resetBy(){
         this.counter = 10
+        this.counterSignal.set(10)
     }
 
     multBy(value: number){

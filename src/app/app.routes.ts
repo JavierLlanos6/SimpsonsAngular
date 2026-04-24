@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { Operacion } from './pages/operacion';
+import { HeroClass } from './hero/hero';
 
 export const routes: Routes = [
     {
@@ -9,9 +11,12 @@ export const routes: Routes = [
     },
     {
         path: 'operacion',
-        loadComponent: () => 
-            import('./pages/operacion')
-            .then(m => m.Operacion)
+        component: Operacion
+            
+    },
+    {
+        path: 'hero',
+        component: HeroClass
     },
     {
         path: ':id',
@@ -19,6 +24,7 @@ export const routes: Routes = [
             import('./features/characters/pages/character-detail/character-detail')
                 .then(m => m.CharacterDetailComponent),
     },
+    
     
     
 ];

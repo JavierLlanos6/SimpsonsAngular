@@ -1,0 +1,19 @@
+<h1>Esto es una prueba</h1>
+<h1>{{ name() }}</h1>
+<dl>
+    <td> Nombre: </td>
+    <dd> {{name()}} </dd>
+
+    <td> Edad: </td>
+    <dd> {{age()}} </dd>
+
+    <td> Metodo: </td>
+    <dd> {{getHeroDescription()}} </dd>
+    
+    <td> Capitalizado: </td>
+    <dd> {{name().toUpperCase()}} </dd>
+</dl>
+
+<button (click)="changeHero()" class="btn btn-primary mx-2"> Cambiar nombre</button>
+<button (click)="changeAge()" class="btn btn-primary mx-2"> Cambiar edad</button>
+<button (click)="resetForm()" class="btn btn-primary mx-2"> Reset</button>
