@@ -27,7 +27,7 @@ export class PruebaDetailComponent implements OnInit {
         const localProduct = localProducts.find(prod => prod.id === id);
 
         if (localProduct) {
-            console.log('[DETAIL LOCAL]:', localProduct);
+            console.log('DETALLE LOCAL:', localProduct);
 
             this.product = localProduct;
             this.loading = false;
@@ -38,13 +38,13 @@ export class PruebaDetailComponent implements OnInit {
         // API
         this.api.getProductById(id).subscribe({
             next: (data) => {
-                console.log('[DETAIL API]:', data);
+                console.log('DETALLE API:', data);
                 this.product = data;
                 this.loading = false;
                 this.cdr.detectChanges();
             },
             error: (err) => {
-                console.error('ERROR DETAIL:', err);
+                console.error('ERRORrrrRR:', err);
                 this.loading = false;
                 this.cdr.detectChanges();
             }

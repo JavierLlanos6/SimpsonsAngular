@@ -1,73 +1,142 @@
-<h1>CRUD Productos</h1>
+<div class="p-6 max-w-6xl mx-auto">
 
-<button (click)="createFakeProduct()">
-    Crear producto
-</button>
-<br>
+  <!-- HEADER -->
+  <h1 class="text-3xl font-bold mb-6 text-gray-800">
+    CRUD Productos
+  </h1>
 
-<button (click)="toggleForm()">
-  Crear producto local
-</button>
+  <!-- BOTONES -->
+  <div class="flex gap-4 mb-6">
 
-<div *ngIf="showForm" style="margin:20px; padding:15px; border:1px solid #aaa;">
-
-    <h2>Nuevo producto</h2>
-
-    <div>
-        <label>Título:</label>
-        <input [(ngModel)]="newProduct.title" />
-    </div>
-
-    <div>
-        <label>Precio:</label>
-        <input type="number" [(ngModel)]="newProduct.price" />
-    </div>
-
-    <div>
-        <label>Descripción:</label>
-        <input [(ngModel)]="newProduct.description" />
-    </div>
-
-    <div>
-        <label>Categoría:</label>
-        <input [(ngModel)]="newProduct.category" />
-    </div>
-
-    <br />
-
-    <button (click)="saveProduct()">
-        Guardar producto
+    <button
+      (click)="createFakeProduct()"
+      class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg shadow"
+    >
+      Crear producto API
     </button>
 
-    <button (click)="toggleForm()">
+    <button
+      (click)="toggleForm()"
+      class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg shadow"
+    >
+      Crear producto local
+    </button>
+
+  </div>
+
+  <!-- FORMULARIO -->
+  <div *ngIf="showForm"
+       class="bg-white p-6 rounded-xl shadow-md mb-6 border">
+
+    <h2 class="text-xl font-semibold mb-4 text-gray-700">
+      {{ editingProductId ? 'Editar producto' : 'Nuevo producto' }}
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+      <div>
+        <label class="block text-sm font-medium text-gray-600">Título</label>
+        <input
+          [(ngModel)]="newProduct.title"
+          class="w-full border rounded-lg px-3 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        />
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-600">Precio</label>
+        <input
+          type="number"
+          [(ngModel)]="newProduct.price"
+          class="w-full border rounded-lg px-3 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        />
+      </div>
+
+      <div class="md:col-span-2">
+        <label class="block text-sm font-medium text-gray-600">Descripción</label>
+        <input
+          [(ngModel)]="newProduct.description"
+          class="w-full border rounded-lg px-3 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        />
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-600">Categoría</label>
+        <input
+          [(ngModel)]="newProduct.category"
+          class="w-full border rounded-lg px-3 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        />
+      </div>
+
+    </div>
+
+    <!-- BOTONES FORM -->
+    <div class="flex gap-3 mt-6">
+
+      <button
+        (click)="saveProduct()"
+        class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg shadow"
+      >
+        {{ editingProductId ? 'Actualizar' : 'Guardar' }}
+      </button>
+
+      <button
+        (click)="toggleForm()"
+        class="bg-gray-400 hover:bg-gray-500 text-white px-4 py-2 rounded-lg shadow"
+      >
         Cancelar
-    </button>
-
-</div>
-
-<div *ngIf="loading">
-    Cargando productos...
-</div>
-
-<div *ngIf="!loading">
-
-    <div *ngFor="let product of products" style="border:1px solid #ccc; padding:10px; margin:10px">
-
-        <h3>{{ product.title }}</h3>
-        <p>{{ product.price }} $</p>
-
-        <button [routerLink]="['/crud', product.id]">
-            Ver
-        </button>
-
-        <button (click)="editProduct(product)">
-            Editar
-        </button>
-
-        <button (click)="deleteProduct(product.id)">
-            Eliminar
-        </button>
+      </button>
 
     </div>
+
+  </div>
+
+  <!-- LOADING -->
+  <div *ngIf="loading" class="text-gray-500 text-lg">
+    Cargando productos...
+  </div>
+
+  <!-- LISTA -->
+  <div *ngIf="!loading"
+       class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+
+    <div *ngFor="let product of products"
+         class="bg-white p-4 rounded-xl shadow hover:shadow-lg transition">
+
+      <h3 class="text-lg font-semibold text-gray-800 mb-2">
+        {{ product.title }}
+      </h3>
+
+      <p class="text-green-600 font-bold mb-4">
+        ${{ product.price }}
+      </p>
+
+      <div class="flex gap-2 flex-wrap">
+
+        <button
+          [routerLink]="['/crud', product.id]"
+          class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded"
+        >
+          Ver
+        </button>
+
+        <button
+          (click)="editProduct(product)"
+          class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded"
+        >
+          Editar
+        </button>
+
+        <button
+          (click)="deleteProduct(product.id)"
+          class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded"
+        >
+          Eliminar
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
 
 </div>

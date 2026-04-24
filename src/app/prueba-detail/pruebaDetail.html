@@ -1,15 +1,52 @@
-<div *ngIf="loading">
+<div class="p-6 max-w-4xl mx-auto">
+
+  <!-- LOADING -->
+  <div *ngIf="loading" class="text-gray-500 text-lg">
     Cargando detalle...
-</div>
+  </div>
 
-<div *ngIf="!loading && product">
-    <h1>{{ product.title }}</h1>
-    <p>{{ product.description }}</p>
-    <p>{{ product.price }} $</p>
+  <!-- DETAIL -->
+  <div *ngIf="!loading && product"
+       class="bg-white rounded-2xl shadow-md p-6 flex flex-col md:flex-row gap-6">
 
-    <img [src]="product.image" width="200" />
+    <!-- IMAGEN -->
+    <div class="flex justify-center items-center md:w-1/2">
+      <img
+        [src]="product.image"
+        alt="{{ product.title }}"
+        class="w-64 h-64 object-contain"
+      />
+    </div>
 
-    <br><br>
+    <!-- INFO -->
+    <div class="flex flex-col justify-between md:w-1/2">
 
-    <a routerLink="/crud">⬅ Volver</a>
+      <div>
+        <h1 class="text-2xl font-bold text-gray-800 mb-4">
+          {{ product.title }}
+        </h1>
+
+        <p class="text-gray-600 mb-4">
+          {{ product.description }}
+        </p>
+
+        <p class="text-2xl font-bold text-green-600">
+          ${{ product.price }}
+        </p>
+      </div>
+
+      <!-- BOTÓN -->
+      <div class="mt-6">
+        <a
+          routerLink="/crud"
+          class="inline-block bg-gray-800 hover:bg-gray-900 text-white px-4 py-2 rounded-lg shadow"
+        >
+          ⬅ Volver
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+
 </div>
