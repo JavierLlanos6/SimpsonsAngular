@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ApiService } from "../features/characters/services/api/api";
 import { RouterLink } from "@angular/router";
+import { Product } from "./products/product.model";
 
 @Component({
   standalone: true,
@@ -10,7 +11,7 @@ import { RouterLink } from "@angular/router";
 })
 export class PruebaCrudClass implements OnInit {
 
-    products: any[] = [];
+    products: Product[] = [];
     loading = true;
 
     constructor(
@@ -27,7 +28,7 @@ export class PruebaCrudClass implements OnInit {
         this.loading = true;
 
         this.api.getProducts().subscribe({
-            next: (data) => {
+            next: (data: Product[]) => {
                 console.log('PRODUCTS:', data);
 
                 this.products = data;
@@ -46,9 +47,10 @@ export class PruebaCrudClass implements OnInit {
 
     deleteProduct(id: number) {
         this.api.deleteProduct(id).subscribe({
-            next: (res) => {
-            console.log('ELIMINADO Producto eliminado correctamente:', res);
-            this.getProducts();
+            next: () => {
+            console.log('ELIMINADO Producto eliminado correctamente:', id);
+            //this.getProducts();
+            this.products = this.products.filter(p => p.id !== id);
             },
             error: (err) => {
             console.error('AAAHHHHHH error:', err);
@@ -57,13 +59,13 @@ export class PruebaCrudClass implements OnInit {
     }
 
     viewProduct(id: number) {
-        this.api.getProductById(id).subscribe((data) => {
+        this.api.getProductById(id).subscribe((data: Product) => {
             console.log('DETALLE:', data);
             alert(`Producto: ${data.title}`);
         });
     }
 
-    editProduct(product: any) {
+    editProduct(product: Product) {
         console.log('Producto original:', product);
 
         const updated = {
@@ -83,7 +85,7 @@ export class PruebaCrudClass implements OnInit {
     }
 
     createFakeProduct() {
-        const newProduct = {
+        const newProduct: Omit<Product, 'id'> =  {
             title: 'PRODUCTO NUEVO',
             price: 100000,
             description: 'Esto es una prueba para crear un producto',
@@ -91,7 +93,7 @@ export class PruebaCrudClass implements OnInit {
             category: 'Electronico'
         };
 
-        this.api.createProduct(newProduct).subscribe((res) => {
+        this.api.createProduct(newProduct).subscribe((res: Product) => {
             console.log('Respuesta API:', res);
             this.products.unshift(res); 
         });
