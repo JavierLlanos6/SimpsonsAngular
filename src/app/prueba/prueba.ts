@@ -4,7 +4,7 @@ import { ApiService } from "../features/characters/services/api/api";
 import { RouterLink } from "@angular/router";
 import { Product } from "./products/product.model";
 import { FormsModule } from "@angular/forms";
-import { ReactiveFormsModule, FormBuilder, Validators } from "@angular/forms";
+import { ReactiveFormsModule, FormBuilder } from "@angular/forms";
 import { createProductForm } from "./forms/prodducto-forms";
 
 @Component({
@@ -34,9 +34,9 @@ export class PruebaCrudClass implements OnInit {
 
     //validaciones:
     productForm!: any;
-    ngOnInit(): void {
-    this.initForm();
-    this.getProducts();
+        ngOnInit(): void {
+        this.initForm();
+        this.getProducts();
     }
 
     initForm() {
