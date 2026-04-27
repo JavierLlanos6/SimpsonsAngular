@@ -5,6 +5,7 @@ import { CharacterListComponent } from './features/characters/pages/character-li
 import { CharacterDetailComponent } from './features/characters/pages/character-detail/character-detail';
 import { PruebaCrudClass } from './prueba/prueba';
 import { PruebaDetailComponent } from './prueba-detail/pruebaDetail';
+import { TablaComponent } from './tablas/tabla.component';
 
 export const routes: Routes = [
   {
@@ -26,6 +27,10 @@ export const routes: Routes = [
   {
     path: 'crud/:id', 
     component: PruebaDetailComponent
+  },
+  {
+    path: 'tabla',
+    component: TablaComponent
   },
   {
     path: ':id', 
