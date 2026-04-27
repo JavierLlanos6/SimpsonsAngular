@@ -1,7 +1,24 @@
-<nav style="padding: 10px; background: #222; color: white;">
-  <a routerLink="/" style="margin-right: 10px; color: white;">Inicio</a>
-  <a routerLink="/operacion" style="margin-right: 10px; color: white;">Operación</a>
-  <a routerLink="/hero" style="margin-right: 10px; color: white;">Hero</a>
-  <a routerLink="/crud" style="color: white;">CRUD</a>
+<style>
+  nav{
+    display: flex;
+    justify-content: center;
+    background-color: #212121;
+    color: white;
+    padding: 10px;
+  }
+  nav a{
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+  }
+  nav a.active{
+    color: rgb(190, 190, 82);
+  }
+</style>
+<nav >
+  <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Inicio</a>
+  <a routerLink="/operacion" routerLinkActive="active">Operación</a>
+  <a routerLink="/hero" routerLinkActive="active">Hero</a>
+  <a routerLink="/crud" routerLinkActive="active">CRUD</a>
 
 </nav>
