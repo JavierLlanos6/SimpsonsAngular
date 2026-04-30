@@ -1,0 +1,145 @@
+<div class="p-6 max-w-6xl mx-auto">
+  <!-- HEADER -->
+  <h1 class="text-3xl font-bold mb-6 text-gray-800">
+    CRUD Productos
+  </h1>
+
+  <!-- BOTONES -->
+  <div class="flex gap-4 mb-6">
+    <button
+      (click)="createFakeProduct()"
+      class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg shadow"
+    >
+      Crear producto API
+    </button>
+    <button
+      (click)="toggleForm()"
+      class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg shadow"
+    >
+      Crear producto local
+    </button>
+
+  </div>
+
+  <!-- FORMULARIO -->
+  <form 
+    *ngIf="showForm"
+    [formGroup]="productForm"
+    (ngSubmit)="saveProduct()"
+    class="bg-white p-6 rounded-xl shadow-md mb-6 border"
+  >
+
+    <h2 class="text-xl font-semibold mb-4 text-gray-700">
+      {{ editingProductId ? 'Editar producto' : 'Nuevo producto' }}
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+      <!-- TITLE -->
+      <div>
+        <label>Título</label>
+        <input formControlName="title" class="input" />
+
+        <p *ngIf="productForm.get('title')?.invalid && productForm.touched"
+          class="text-red-500 text-sm">
+          Solo letras y números, mínimo 3 caracteres
+        </p>
+      </div>
+
+      <!-- PRICE -->
+      <div>
+        <label>Precio</label>
+        <input type="number" formControlName="price" class="input" />
+        <p *ngIf="productForm.get('price')?.invalid && productForm.touched"
+          class="text-red-500 text-sm">
+          Debe ser mayor a 1 y menor a 10000
+        </p>
+      </div>
+
+      <!-- DESCRIPTION -->
+      <div class="md:col-span-2">
+        <label>Descripción</label>
+        <input formControlName="description" class="input" />
+        <p *ngIf="productForm.get('description')?.invalid && productForm.touched"
+          class="text-red-500 text-sm">
+          Entre 5 y 200 caracteres
+        </p>
+      </div>
+
+      <!-- CATEGORY -->
+      <div>
+        <label>Categoría</label>
+        <input formControlName="category" class="input" />
+        <p *ngIf="productForm.get('category')?.invalid && productForm.touched"
+          class="text-red-500 text-sm">
+          Campo requerido (mínimo 3 caracteres)
+        </p>
+      </div>
+
+    </div>
+
+    <!-- BOTONES -->
+    <div class="flex gap-3 mt-6">
+      <button
+        type="submit"
+        [disabled]="productForm.invalid"
+        class="bg-indigo-600 text-white px-4 py-2 rounded"
+      >
+        {{ editingProductId ? 'Actualizar' : 'Guardar' }}
+      </button>
+      <button
+        type="button"
+        (click)="toggleForm()"
+        class="bg-gray-400 text-white px-4 py-2 rounded"
+      >
+        Cancelar
+      </button>
+    </div>
+  </form>
+
+  <!-- LOADING -->
+  <div *ngIf="loading" class="text-gray-500 text-lg">
+    Cargando productos...
+  </div>
+
+  <!-- LISTA -->
+  <div *ngIf="!loading"
+       class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+
+    <div *ngFor="let product of products"
+         class="bg-white p-4 rounded-xl shadow hover:shadow-lg transition">
+
+      <h3 class="text-lg font-semibold text-gray-800 mb-2">
+        {{ product.title }}
+      </h3>
+
+      <p class="text-green-600 font-bold mb-4">
+        ${{ product.price }}
+      </p>
+
+      <div class="flex gap-2 flex-wrap">
+
+        <button
+          [routerLink]="['/crud', product.id]"
+          class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded"
+        >
+          Ver
+        </button>
+
+        <button
+          (click)="editProduct(product)"
+          class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded"
+        >
+          Editar
+        </button>
+
+        <button
+          (click)="deleteProduct(product.id)"
+          class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded"
+        >
+          Eliminar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

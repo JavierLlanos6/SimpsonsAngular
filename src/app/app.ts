@@ -1,14 +1,12 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Videojuegos } from './components/videojuegos/videojuegos';
+import { Navbar } from './components/shared/navbar/navbar';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Videojuegos],
-  templateUrl: './app.html',
-  styleUrl: './app.css'
+  standalone: true,
+  imports: [RouterOutlet, Navbar],
+  template: `<router-outlet />`,
+  templateUrl: './app.html'
 })
-export class App {
-  protected readonly title = signal('practica-angular-21');
-  descripcion = 'prueba de angular para aprender'
-}
+export class App { }

@@ -1,0 +1,25 @@
+<style>
+  nav{
+    display: flex;
+    justify-content: center;
+    background-color: #212121;
+    color: white;
+    padding: 10px;
+  }
+  nav a{
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+  }
+  nav a.active{
+    color: rgb(190, 190, 82);
+  }
+</style>
+<nav >
+  <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Inicio</a>
+  <a routerLink="/operacion" routerLinkActive="active">Operación</a>
+  <a routerLink="/hero" routerLinkActive="active">Hero</a>
+  <a routerLink="/crud" routerLinkActive="active">CRUD</a>
+  <a routerLink="/tabla" routerLinkActive="active">TABLA</a>
+
+</nav>
